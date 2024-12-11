@@ -7,7 +7,7 @@ const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState("Home");
 
-  // Menu items with their corresponding icons
+  
   const topItems = [
     { name: "Home", icon: <Home size={24} /> },
     { name: "Library", icon: <LibraryBig size={24} /> },
@@ -27,7 +27,7 @@ const Sidebar = () => {
     <div
       className={`${
         open ? "w-72" : "w-20"
-      } duration-300 p-5 pt-8 h-screen relative flex flex-col justify-between bg-white border-r-2 border-gray-300 z-20`}
+      } duration-300 p-5 pt-8 h-screen relative flex flex-col justify-between bg-gray-200 z-20`}
     >
       {/* Top Section */}
       <div>

@@ -5,8 +5,8 @@ import { BellDot, SquareCheckBig } from "lucide-react"; // Importing Lucide icon
 const Navbar = () => {
   return (
     <>
-      <div className="w-full">
-        <div className="navbar bg-base-100">
+      <div className="w-full ">
+        <div className="navbar bg-gray-200">
           <div className="flex-1">
             <label className="input input-bordered flex items-center gap-2 rounded-full">
               <input type="text" className="grow" placeholder="Search" />
@@ -26,7 +26,7 @@ const Navbar = () => {
           </div>
           <div className="flex-none flex items-center gap-4">
           <div>
-                {/* Centering "+" and "Upload" */}
+                {/* Upload */}
                 <button className="btn flex items-center justify-center bg-sky-500 hover:bg-sky-700 rounded-full text-white text-lg gap-2 px-6 py-2">
                   <span className="text-2xl">+</span>
                   <span>Upload</span>

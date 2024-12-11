@@ -7,7 +7,7 @@ import Content from '../Components/Content'
 const Home = () => {
   return (
     <>
-    <div className='parent'>
+    <div className='parent bg-gray-200'>
       <div className='sidebar'>
         <Sidebar />
       </div>
