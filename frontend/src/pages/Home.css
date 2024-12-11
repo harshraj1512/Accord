@@ -1,0 +1,15 @@
+.parent {
+    display: flex;
+}
+
+.sidebar {
+}
+
+.mainbar {
+    width: 100%;
+    
+}
+
+.navbar{
+    height: 20px;
+}
