@@ -79,7 +79,7 @@ const Content = () => {
   return (
     <>
       <div className="pl-3">
-        <div className="flex gap-4">
+        <div className="flex gap-10 ">
           {/* First Section */}
           <div className="flex flex-col gap-2 w-72">
             <div className="bg-white rounded-3xl shadow p-5">
@@ -107,15 +107,15 @@ const Content = () => {
             </div>
           </div>
           {/* Second section */}
-          <div className="bg-white p-5 shadow border border-stone-300 rounded-[30px] h-[374px]">
+          <div className="bg-white p-5 shadow border border-stone-300 rounded-[30px] h-[375px]">
             <div className="mb-2">
               <p className="text-black text-xl font-medium">Task Log</p>
             </div>
-            <div className="flex gap-4 flex-col overflow-y-auto h-[90%] pr-2">
+            <div className="flex gap-4 flex-col scrollbar-thin scrollbar-webkit overflow-y-auto h-[90%] pr-2">
               {taskLogs.map((title, ind) => (
                 <div
                   key={ind}
-                  className="relative p-2 bg-blue-50 rounded-xl border border-sky-200 w-72 "
+                  className="relative p-2 bg-blue-50 rounded-xl border border-sky-200 w-80 "
                 >
                   <Check
                     className="absolute top-4 right-3 text-sky-900 bg-white rounded-xl"
@@ -142,10 +142,10 @@ const Content = () => {
             </div>
           </div>
           {/* Third section */}
-          <div className="flex bg-white p-5 shadow border border-stone-300 rounded-[30px] h-[374px]">
+          <div className="flex bg-white p-5 shadow border border-stone-300 rounded-[30px] h-[375px]">
             {/*First section */}
             <div>
-              <p className="text-black text-xl font-medium">Calender</p>
+              <p className="text-black text-xl font-medium ml-5">Calender</p>
               {/*MUI */}
               <div>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -172,7 +172,7 @@ const Content = () => {
                 <p className="text-black text-sm font-normal mb-2">
                   Upcoming Expiration
                 </p>
-                <div className="flex gap-4 flex-col overflow-y-auto h-20 pr-2 mb-2">
+                <div className="flex gap-4 flex-col scrollbar-thin scrollbar-webkit overflow-y-auto h-20 pr-2 mb-2">
                   {dummynum.map((title, ind) => (
                     <div
                       key={ind}
@@ -205,7 +205,7 @@ const Content = () => {
                 <p className="text-black text-sm font-normal mb-2">
                   Upcoming Renewal
                 </p>
-                <div className="flex gap-4 flex-col overflow-y-auto h-28 pr-2">
+                <div className="flex gap-4 flex-col scrollbar-thin overflow-y-auto h-28 pr-2">
                   {dummynum.map((title, ind) => (
                     <div
                       key={ind}

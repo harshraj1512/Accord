@@ -1,19 +1,99 @@
-import React from "react";
-import { LayoutList } from "lucide-react";
+import React, { useState } from "react";
+import { LayoutList, ChevronRight } from "lucide-react";
+import Drawer from "./Drawer";
 
 const Tablepage = () => {
-    const data = [
-        { name: "John Doe", status: "Review", assigned: "Admin", uploaded: "Yes", activity: "Meeting", lastUpdated: "2024-12-12" },
-        { name: "Jane Smith", status: "Signatured", assigned: "Manager", uploaded: "No", activity: "Report", lastUpdated: "2024-12-11" },
-        { name: "Sam Wilson", status: "Review", assigned: "User", uploaded: "Yes", activity: "Survey", lastUpdated: "2024-12-10" },
-        { name: "Kate Johnson", status: "Signatured", assigned: "Admin", uploaded: "No", activity: "Interview", lastUpdated: "2024-12-09" },
-        { name: "Tom Brown", status: "Review", assigned: "Manager", uploaded: "Yes", activity: "Meeting", lastUpdated: "2024-12-08" },
-        { name: "Lucy Adams", status: "Signatured", assigned: "User", uploaded: "No", activity: "Testing", lastUpdated: "2024-12-07" },
-        { name: "Peter Clark", status: "Review", assigned: "Admin", uploaded: "Yes", activity: "Training", lastUpdated: "2024-12-06" },
-        { name: "Sophie Lee", status: "Signatured", assigned: "Manager", uploaded: "No", activity: "Workshop", lastUpdated: "2024-12-05" },
-        { name: "Chris King", status: "Review", assigned: "Admin", uploaded: "Yes", activity: "Conference", lastUpdated: "2024-12-04" },
-        { name: "Emily Davis", status: "Signatured", assigned: "User", uploaded: "No", activity: "Event", lastUpdated: "2024-12-03" },
-      ];
+  const [drawer, setDrawer] = useState(false);
+  const [selectedContract, setSelectedcontract] = useState(null);
+  const data = [
+    {
+      name: "Contract XYZ",
+      status: "Review",
+      assigned: ["Ajay Kumar", "Jay kumar"],
+      uploaded: "1 min ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Signatured",
+      assigned: ["Ajay Kumar", "Jay kumar"],
+      uploaded: "1 min ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Review",
+      assigned: ["Ajay Kumar"],
+      uploaded: "3 day ago",
+      activity: "Send for signature",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Signatured",
+      assigned: ["Ajay Kumar"],
+      uploaded: "3 day ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Review",
+      assigned: ["Ajay Kumar"],
+      uploaded: "3 day ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Signatured",
+      assigned: ["Ajay Kumar", "Jay kumar"],
+      uploaded: "3 day ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Review",
+      assigned: ["Ajay Kumar", "Jay kumar"],
+      uploaded: "3 day ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Signatured",
+      assigned: ["Ajay Kumar", "Jay kumar"],
+      uploaded: "3 day ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Review",
+      assigned: ["Ajay Kumar", "Jay kumar"],
+      uploaded: "3 day ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+    {
+      name: "Contract XYZ",
+      status: "Signatured",
+      assigned: ["Ajay Kumar", "Jay kumar"],
+      uploaded: "3 day ago",
+      activity: "New Version Generated",
+      lastUpdated: "7 min ago",
+    },
+  ];
+  const handleOpen = () => {
+    setDrawer(true);
+  };
+
+  const handleClose = () => {
+    setDrawer(false);
+  };
   return (
     <>
       <div className="container bg-white mt-4 p-5 rounded-[25px] shadow border border-stone-300">
@@ -77,36 +157,74 @@ const Tablepage = () => {
         </div>
 
         {/* Table */}
-        <div className="overflow-y-auto max-h-[150px]">
-        <table className="min-w-full ">
-        <thead className="sticky top-0 bg-white z-10">
+        <div className="overflow-y-auto scrollbar-thin max-h-[150px]">
+          <table className="min-w-full ">
+            <thead className="sticky top-0 bg-white z-10">
               <tr className=" text-start">
-                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">Name</th>
-                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">Status</th>
-                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">Assigned</th>
-                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">Uploaded</th>
-                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">Activity</th>
-                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">Last Updated</th>
+                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">
+                  Name
+                </th>
+                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">
+                  Status
+                </th>
+                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">
+                  Assigned
+                </th>
+                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">
+                  Uploaded
+                </th>
+                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">
+                  Activity
+                </th>
+                <th className="px-4 py-2 border-b-2 text-black text-sm font-medium text-start">
+                  Last Updated
+                </th>
+                <th className="border-b-2 text-black text-sm font-medium"></th>
               </tr>
-        </thead>
-          <tbody>
+            </thead>
+            <tbody>
               {data.map((item, index) => (
                 <tr key={index} className="text-start">
-                  <td className="px-4 py-2 border-b-2 text-sky-500 text-base font-normal underline">{item.name}</td>
+                  <td className="px-4 py-2 border-b-2 text-sky-500 text-base font-normal underline cursor-pointer">
+                    {item.name}
+                  </td>
                   <td className="px-4 py-2 border-b-2 text-start">
-                    <span className={`inline-block p-1.5 rounded-full mr-2 ${item.status === 'Review' ? 'bg-blue-500' : 'bg-green-500'}`}></span>
+                    <span
+                      className={`inline-block p-1.5 rounded-full mr-2 ${
+                        item.status === "Review"
+                          ? "bg-blue-500"
+                          : "bg-green-500"
+                      }`}
+                    ></span>
                     {item.status}
                   </td>
-                  <td className="px-4 py-2 border-b-2">{item.assigned}</td>
+                  <td className="px-4 py-2 border-b-2 ">
+                    {item.assigned
+                      .map((name) => {
+                        const initials = name
+                          .split(" ").map((word) => word[0].toUpperCase()).join("");
+                        return (
+                          <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-sm text-white font-semibold mr-2 ${initials === "AK" ? "bg-cyan-700" : "bg-amber-500"}`}>{initials}</span>
+                        );
+                      })}
+                  </td>
+
                   <td className="px-4 py-2 border-b-2">{item.uploaded}</td>
                   <td className="px-4 py-2 border-b-2">{item.activity}</td>
                   <td className="px-4 py-2 border-b-2">{item.lastUpdated}</td>
+                  <td
+                    onClick={handleOpen}
+                    className=" border-b-2 cursor-pointer"
+                  >
+                    <ChevronRight />
+                  </td>
                 </tr>
               ))}
             </tbody>
-        </table>
+          </table>
         </div>
       </div>
+      <Drawer isOpen={drawer} onClose={handleClose} />
     </>
   );
 };
