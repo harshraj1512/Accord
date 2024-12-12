@@ -1,80 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Check, SquareArrowOutUpRight, ChevronRight } from "lucide-react";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useAuthStore } from "../store/authStore";
 import "./content.css";
 import Tablepage from "./Tablepage";
 const Content = () => {
-  const [value, setValue] = useState(new Date());
+  const [isLoading, setIsLoading] = useState(false);
+  const { tasklog, tasklogs, tablemonth, tablemonths } = useAuthStore();
 
-  const dummynum = [
-    {
-      month: "January 2024",
-      value: Math.floor(Math.random() * 5) + 1,
-    },
-    {
-      month: "January 2024",
-      value: Math.floor(Math.random() * 5) + 1,
-    },
-    {
-      month: "January 2024",
-      value: Math.floor(Math.random() * 5) + 1,
-    },
-    {
-      month: "January 2024",
-      value: Math.floor(Math.random() * 5) + 1,
-    },
-    {
-      month: "January 2024",
-      value: Math.floor(Math.random() * 5) + 1,
-    },
-  ];
+  useEffect(() => {
+    const fetchTask = async () => {
+      setIsLoading(true);
+      try {
+        await tasklog();
+        console.log("Fetched Task Logs:", tasklogs);
+      } catch (error) {
+        console.error("Error fetching task logs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const taskLogs = [
-    {
-      title: "Request Ticket",
-      contract: "Contract xyz",
-      date: "10th August 12:00",
-      completed: true,
-    },
-    {
-      title: "Request Ticket",
-      contract: "Contract xyz",
-      date: "11th August 13:00",
-      completed: false,
-    },
-    {
-      title: "Submit Ticket",
-      contract: "Contract xyz",
-      date: "12th August 14:00",
-      completed: true,
-    },
-    {
-      title: "Request Ticket",
-      contract: "Contract xyz",
-      date: "13th August 15:00",
-      completed: false,
-    },
-    {
-      title: "submit Ticket",
-      contract: "Contract xyz",
-      date: "14th August 16:00",
-      completed: false,
-    },
-  ];
+    const fetchMonth = async () => {
+      setIsLoading(true);
+      try {
+        await tablemonth();
+        console.log("Fetched monts Logs:", tablemonths);
+      } catch (error) {
+        console.error("Error fetching task logs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handlePrevMonth = () => {
-    const newDate = new Date(value);
-    newDate.setMonth(newDate.getMonth() - 1);
-    setValue(newDate);
-  };
+    fetchTask();
+    fetchMonth();
+  }, []);
 
-  const handleNextMonth = () => {
-    const newDate = new Date(value);
-    newDate.setMonth(newDate.getMonth() + 1);
-    setValue(newDate);
-  };
+  
 
   return (
     <>
@@ -111,35 +76,41 @@ const Content = () => {
             <div className="mb-2">
               <p className="text-black text-xl font-medium">Task Log</p>
             </div>
-            <div className="flex gap-4 flex-col scrollbar-thin scrollbar-webkit overflow-y-auto h-[90%] pr-2">
-              {taskLogs.map((title, ind) => (
-                <div
-                  key={ind}
-                  className="relative p-2 bg-blue-50 rounded-xl border border-sky-200 w-80 "
-                >
-                  <Check
-                    className="absolute top-4 right-3 text-sky-900 bg-white rounded-xl"
-                    size={24}
-                  />
-                  <div>
-                    <p
-                      className={`text-black text-sm font-semibold ${
-                        title.completed ? "line-through" : ""
-                      }`}
-                    >
-                      {title.title}
-                    </p>
-                    <p className="text-black text-xs font-normal">
-                      {title.contract}
-                    </p>
-                    <hr className="my-2 border-gray-300 border-t-2" />
-                    <p className="text-black text-xs font-normal">
-                      {title.date}
-                    </p>
+            {isLoading ? (
+              <div className="flex gap-4 flex-col scrollbar-thin scrollbar-webkit overflow-y-auto h-[90%] pr-2">
+                {tasklogs.map((title, ind) => (
+                  <div
+                    key={ind}
+                    className="relative p-2 bg-blue-50 rounded-xl border border-sky-200 w-80 "
+                  >
+                    <Check
+                      className="absolute top-4 right-3 text-sky-900 bg-white rounded-xl"
+                      size={24}
+                    />
+                    <div>
+                      <p
+                        className={`text-black text-sm font-semibold ${
+                          title.completed ? "line-through" : ""
+                        }`}
+                      >
+                        {title.title}
+                      </p>
+                      <p className="text-black text-xs font-normal">
+                        {title.contract}
+                      </p>
+                      <hr className="my-2 border-gray-300 border-t-2" />
+                      <p className="text-black text-xs font-normal">
+                        {title.date}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex justify-center items-center h-[90%]">
+                <div className="animate-spin w-8 h-8 border-4 border-t-sky-500 border-gray-200 rounded-full"></div>
+              </div>
+            )}
           </div>
           {/* Third section */}
           <div className="flex bg-white p-5 shadow border border-stone-300 rounded-[30px] h-[375px]">
@@ -172,8 +143,9 @@ const Content = () => {
                 <p className="text-black text-sm font-normal mb-2">
                   Upcoming Expiration
                 </p>
-                <div className="flex gap-4 flex-col scrollbar-thin scrollbar-webkit overflow-y-auto h-20 pr-2 mb-2">
-                  {dummynum.map((title, ind) => (
+                {isLoading ? (
+                  <div className="flex gap-4 flex-col scrollbar-thin scrollbar-webkit overflow-y-auto h-20 pr-2 mb-2">
+                  {tablemonths.map((title, ind) => (
                     <div
                       key={ind}
                       className="relative p-3 bg-blue-50 rounded-xl border border-sky-200 w-72 "
@@ -199,14 +171,21 @@ const Content = () => {
                     </div>
                   ))}
                 </div>
+                ) : (
+                  <div className="flex justify-center items-center h-[90%]">
+                <div className="animate-spin w-8 h-8 border-4 border-t-sky-500 border-gray-200 rounded-full"></div>
+              </div>
+                )}
+                
               </div>
 
               <div>
                 <p className="text-black text-sm font-normal mb-2">
                   Upcoming Renewal
                 </p>
-                <div className="flex gap-4 flex-col scrollbar-thin overflow-y-auto h-28 pr-2">
-                  {dummynum.map((title, ind) => (
+                {isLoading ? (
+                  <div className="flex gap-4 flex-col scrollbar-thin scrollbar-webkit overflow-y-auto h-20 pr-2 mb-2">
+                  {tablemonths.map((title, ind) => (
                     <div
                       key={ind}
                       className="relative p-3 bg-blue-50 rounded-xl border border-sky-200 w-72 "
@@ -232,6 +211,11 @@ const Content = () => {
                     </div>
                   ))}
                 </div>
+                ) : (
+                  <div className="flex justify-center items-center h-[90%]">
+                <div className="animate-spin w-8 h-8 border-4 border-t-sky-500 border-gray-200 rounded-full"></div>
+              </div>
+                )}
               </div>
             </div>
           </div>
@@ -239,7 +223,7 @@ const Content = () => {
 
         {/* main Table  */}
         <div>
-            <Tablepage />
+          <Tablepage />
         </div>
       </div>
     </>

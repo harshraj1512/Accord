@@ -7,6 +7,7 @@ const Tablepage = () => {
   const [selectedContract, setSelectedcontract] = useState(null);
   const data = [
     {
+      id: 1,
       name: "Contract XYZ",
       status: "Review",
       assigned: ["Ajay Kumar", "Jay kumar"],
@@ -15,14 +16,17 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 2,
       name: "Contract XYZ",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "1 min ago",
       activity: "New Version Generated",
       lastUpdated: "7 min ago",
+      signature: "13th Sept"
     },
     {
+      id: 3,
       name: "Contract XYZ",
       status: "Review",
       assigned: ["Ajay Kumar"],
@@ -31,6 +35,7 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 4,
       name: "Contract XYZ",
       status: "Signatured",
       assigned: ["Ajay Kumar"],
@@ -39,6 +44,7 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 5,
       name: "Contract XYZ",
       status: "Review",
       assigned: ["Ajay Kumar"],
@@ -47,6 +53,7 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 6,
       name: "Contract XYZ",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
@@ -55,6 +62,7 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 7,
       name: "Contract XYZ",
       status: "Review",
       assigned: ["Ajay Kumar", "Jay kumar"],
@@ -63,6 +71,7 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 8,
       name: "Contract XYZ",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
@@ -71,6 +80,7 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 9,
       name: "Contract XYZ",
       status: "Review",
       assigned: ["Ajay Kumar", "Jay kumar"],
@@ -79,6 +89,7 @@ const Tablepage = () => {
       lastUpdated: "7 min ago",
     },
     {
+      id: 10,
       name: "Contract XYZ",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
