@@ -33,7 +33,7 @@ const Sidebar = () => {
       <div>
         <img
           src={Control}
-          className={`absolute cursor-pointer -right-3 top-9 w-7 border-2 rounded-full ${
+          className={`absolute cursor-pointer right-3 top-20 w-7 border-2 rounded-full ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}
@@ -67,7 +67,9 @@ const Sidebar = () => {
                 {item.icon}
               </div>
               <span
-                className={`text-white font-medium duration-300 ${!open && "hidden"}`}
+                className={` font-medium duration-300 ${!open && "hidden"} ${
+                  selected === item.name ? "text-white" : "text-sky-900"
+                }`}
               >
                 {item.name}
               </span>
@@ -94,7 +96,9 @@ const Sidebar = () => {
               {item.icon}
             </div>
             <span
-              className={`text-white font-medium duration-300 ${!open && "hidden"}`}
+              className={` font-medium duration-300 ${!open && "hidden"} ${
+                selected === item.name ? "text-white" : "text-sky-900"
+              }`}
             >
               {item.name}
             </span>

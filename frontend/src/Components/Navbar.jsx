@@ -53,7 +53,7 @@ const Navbar = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              {/* Dropdown for search results */}
+              {/* Dropdown for search */}
             {filteredData.length > 0 && (
               <ul className="absolute top-full left-0 right-0 bg-white shadow-lg mt-1 w-64 rounded-lg max-h-60 overflow-auto z-50">
                 {filteredData.map((item, index) => (

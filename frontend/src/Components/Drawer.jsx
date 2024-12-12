@@ -133,7 +133,7 @@ const Drawer = ({ isOpen, onClose,contract }) => {
             <hr className="  border-gray-300 border-t-1" />
         </div>
         </> : <>
-        Loading
+        
         </>}
         
 

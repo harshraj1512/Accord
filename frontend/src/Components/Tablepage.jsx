@@ -27,7 +27,7 @@ const Tablepage = () => {
   }, []);
 
   const handleOpen = (contract) => {
-    setSelectedContract(contract); // Set the selected contract correctly
+    setSelectedContract(contract); 
     setDrawer(true);
   };
 
@@ -40,12 +40,47 @@ const Tablepage = () => {
       <div className="container bg-white mt-4 p-5 rounded-[25px] shadow border border-stone-300">
         {/* Buttons Row */}
         <div className="flex justify-between">
-          {/* Buttons */}
+          
           <div className="flex space-x-4 mb-4">
-            {/* Add your buttons here */}
+          <button className="flex gap-2 text-center items-center bg-sky-900 text-white text-sm font-semibold px-3 py-2 rounded-[100px] border border-stone-300">
+              <span>
+                <LayoutList size={18} />
+              </span>
+              Name
+              <span className="px-1 py-0.5 rounded-[100px] bg-white text-black text-xs font-medium">
+                23
+              </span>
+            </button>
+            <button className="flex gap-2 text-center items-center bg-white text-black text-sm font-normal px-3 py-2 rounded-[100px] border border-stone-300">
+              <span>
+                <LayoutList size={18} />
+              </span>
+              Participating
+              <span className="px-1 py-0.5 rounded-[100px] bg-neutral-200 text-black text-xs font-medium">
+                10
+              </span>
+            </button>
+            <button className="flex gap-2 text-center items-center bg-white text-black text-sm font-normal px-3 py-2 rounded-[100px] border border-stone-300">
+              <span>
+                <LayoutList size={18} />
+              </span>
+              All Contract
+              <span className="px-1 py-0.5 rounded-[100px] bg-neutral-200 text-black text-xs font-medium">
+                10
+              </span>
+            </button>
+            <button className="flex gap-2 text-center items-center bg-white text-black text-sm font-normal px-3 py-2 rounded-[100px] border border-stone-300">
+              <span>
+                <LayoutList size={18} />
+              </span>
+              Completed
+              <span className="px-1 py-0.5 rounded-[100px] bg-neutral-200 text-black text-xs font-medium">
+                10
+              </span>
+            </button>
           </div>
 
-          {/* Filter & View */}
+          {/* Filter  */}
           <div className="">
             <button className="p-2 px-3 border border-stone-300 bg-white text-black text-xs font-normal rounded-[100px]">
               Filter
@@ -127,7 +162,7 @@ const Tablepage = () => {
                     <td className="px-4 py-2 border-b-2">{item.activity}</td>
                     <td className="px-4 py-2 border-b-2">{item.lastUpdated}</td>
                     <td
-                      onClick={() => handleOpen(item)} // Pass the function correctly
+                      onClick={() => handleOpen(item)} 
                       className="border-b-2 cursor-pointer"
                     >
                       <ChevronRight />
