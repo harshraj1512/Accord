@@ -47,7 +47,7 @@ const months = [
   const data = [
     {
       id: 1,
-      name: "Contract XYZ",
+      name: "Contract XYZ1",
       status: "Review",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "1 min ago",
@@ -56,7 +56,7 @@ const months = [
     },
     {
       id: 2,
-      name: "Contract XYZ",
+      name: "Contract XYZ2",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "1 min ago",
@@ -66,7 +66,7 @@ const months = [
     },
     {
       id: 3,
-      name: "Contract XYZ",
+      name: "Contract XYZ3",
       status: "Review",
       assigned: ["Ajay Kumar"],
       uploaded: "3 day ago",
@@ -75,7 +75,7 @@ const months = [
     },
     {
       id: 4,
-      name: "Contract XYZ",
+      name: "Contract XYZ4",
       status: "Signatured",
       assigned: ["Ajay Kumar"],
       uploaded: "3 day ago",
@@ -85,7 +85,7 @@ const months = [
     },
     {
       id: 5,
-      name: "Contract XYZ",
+      name: "Contract XYZ5",
       status: "Review",
       assigned: ["Ajay Kumar"],
       uploaded: "3 day ago",
@@ -94,7 +94,7 @@ const months = [
     },
     {
       id: 6,
-      name: "Contract XYZ",
+      name: "Contract XYZ6",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "3 day ago",
@@ -104,7 +104,7 @@ const months = [
     },
     {
       id: 7,
-      name: "Contract XYZ",
+      name: "Contract XYZ7",
       status: "Review",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "3 day ago",
@@ -113,7 +113,7 @@ const months = [
     },
     {
       id: 8,
-      name: "Contract XYZ",
+      name: "Contract XYZ8",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "3 day ago",
@@ -123,7 +123,7 @@ const months = [
     },
     {
       id: 9,
-      name: "Contract XYZ",
+      name: "Contract XYZ9",
       status: "Review",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "3 day ago",
@@ -132,7 +132,7 @@ const months = [
     },
     {
       id: 10,
-      name: "Contract XYZ",
+      name: "Contract XYZ10",
       status: "Signatured",
       assigned: ["Ajay Kumar", "Jay kumar"],
       uploaded: "3 day ago",

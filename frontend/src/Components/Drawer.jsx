@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { ChevronLeft, Ellipsis, Check, Dot, Download, Clock    } from "lucide-react";
 
-const Drawer = ({ isOpen, onClose }) => {
-    const [isButton, setIsButton] = useState("Send for Signature");
+const Drawer = ({ isOpen, onClose,contract }) => {
+    
+    console.log(contract);
   return (
     <>
       
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40"
-          onClick={() => {setIsButton("Send for Signature"); onClose();}}
+          onClick={() => { onClose();}}
         ></div>
       )}
       {/* Drawer */}
@@ -21,8 +22,8 @@ const Drawer = ({ isOpen, onClose }) => {
         {/* First */}
         <div className="flex mt-3 justify-between bg-white p-2">
           <div className="flex gap-3 items-center">
-            <ChevronLeft onClick={() => {setIsButton("Send for Signature"); onClose();}} className="cursor-pointer" />
-            <h1 className="text-black text-xl font-medium">Contract XYZ</h1>
+            <ChevronLeft onClick={() => { onClose();}} className="cursor-pointer" />
+            <h1 className="text-black text-xl font-medium">{contract?.name || "No Contract Selected"}</h1>
           </div>
           <div className="">
             <Ellipsis />
@@ -33,13 +34,12 @@ const Drawer = ({ isOpen, onClose }) => {
         <div className="flex justify-between p-2">
           <div>
             <p className="text-black text-base font-normal">Contract Status</p>
-            { isButton === "Send for Signature" ? " " : 
-                <>
-                <p className="text-black text-base font-normal">
+            { contract?.status === "Signatured" && <>
+            <p className="text-black text-base font-normal">
                     <span className="font-semibold">Sent for Signature</span> on 13th Sep
                 </p>
                 <p className="text-black text-base font-semibold underline cursor-pointer">View Details</p>
-                </>
+            </> 
             }
             
           </div>
@@ -52,21 +52,22 @@ const Drawer = ({ isOpen, onClose }) => {
               <p className=" text-white text-xs font-medium">Review</p>
             </div>
 
-            { isButton === "Send for Signature" ? <>
-            <hr className="my-2 w-8 border-gray-300 border-t-2" />
-            </>:<>
+            { contract?.status === "Signatured"  ? <>
+            
             <hr className="my-2 w-8 border-sky-400 border-t-2" />
+            </>:<>
+            <hr className="my-2 w-8 border-gray-300 border-t-2" />
             </>}
 
             <div className="flex gap-2 items-center bg-cyan-700 px-[7.19px] h-[35.70px] rounded-[89.92px]">
-                { isButton === "Send for Signature" ? 
+                { contract?.status === "Signatured" ? 
                 <>
-                <span className="bg-blue-50 rounded-[68.20px] border border-sky-400 ">
-                <Dot />
+              <span className="bg-blue-50 rounded-[68.20px] ">
+                <Check />
               </span>
                 </> : <>
-                <span className="bg-blue-50 rounded-[68.20px] ">
-                <Check />
+                <span className="bg-blue-50 rounded-[68.20px] border border-sky-400 ">
+                <Dot />
               </span>
                 </>}
               
@@ -75,20 +76,22 @@ const Drawer = ({ isOpen, onClose }) => {
               </p>
             </div>
 
-            { isButton === "Send for Signature" ? <>
-            <hr className="my-2 w-8 border-gray-300 border-t-2" />
-            </>:<>
+            { contract?.status === "Signatured" ? <>
+            
             <hr className="my-2 w-8 border-0 h-[2px] bg-gradient-to-r from-blue-500 to-gray-300" />
+            </>:<>
+            <hr className="my-2 w-8 border-gray-300 border-t-2" />
             </>}
             
 
             <div className="flex gap-2 items-center bg-cyan-700 px-[7.19px] h-[35.70px] rounded-[89.92px]">
-                { isButton === "Send for Signature" ? <>
-                <span className=" p-2.5 bg-blue-50 rounded-[68.20px] "></span>
-                </>: <>
+                { contract?.status === "Signatured" ? <>
+                
                 <span className="bg-blue-50 rounded-[68.20px] border border-sky-400 ">
                 <Dot />
               </span>
+                </>: <>
+                <span className=" p-2.5 bg-blue-50 rounded-[68.20px] "></span>
                 </>}
               
               <p className=" text-white text-xs font-medium">
@@ -105,7 +108,7 @@ const Drawer = ({ isOpen, onClose }) => {
 
         <hr className="  border-gray-300 border-t-1" />
 
-        {isButton === "Send for Signature" ? " " : <>
+        {contract?.status === "Signatured" ? <>
         <div className="bg-white p-2">
             <div className="flex justify-between mt-1">
                 <p className="text-black text-lg font-normal">Sign Status</p>
@@ -129,6 +132,8 @@ const Drawer = ({ isOpen, onClose }) => {
             </div>
             <hr className="  border-gray-300 border-t-1" />
         </div>
+        </> : <>
+        Loading
         </>}
         
 
@@ -137,19 +142,18 @@ const Drawer = ({ isOpen, onClose }) => {
           <div className="flex justify-between items-center bg-white p-5 rounded-xl border border-stone-300">
             <div className="">
               <p className="text-black text-base font-normal">
-                Contract XYZ - Version xx
+                {contract?.name || "null"}- Version xx
               </p>
               <span className="text-black text-sm font-normal">
-                Last Updated on 12th September
+                Last Updated on {contract?.lastUpdated || "Null"}
               </span>
             </div>
 
             <div className="flex gap-3 items-center">
-                { isButton === "Send for Signature" ? <>
+                { contract?.status !== "Signatured"&& <>
                 <button className="p-2 px-3 border border-zinc-500 bg-white text-black text-sm font-normal rounded-[100px]  ">
                 Edit Document
               </button>
-                </> : <>
                 </>}
 
               <button className="p-2 px-3 border border-zinc-500 bg-white text-black text-sm font-normal rounded-[100px]  ">
@@ -160,12 +164,12 @@ const Drawer = ({ isOpen, onClose }) => {
           </div>
 
           <div className="fixed bottom-0 left-0 w-full bg-white py-3 px-2 flex justify-between">
-            <button onClick={() => {setIsButton("Send for Signature"); onClose();}} className="p-2 px-3 border border-zinc-500 bg-white text-black text-sm font-normal rounded-[100px]  ">
+            <button onClick={() => { onClose();}} className="p-2 px-3 border border-zinc-500 bg-white text-black text-sm font-normal rounded-[100px]  ">
                 Cancel
             </button>
 
-            <button onClick={() => setIsButton("Send for Internal Signature")} className="p-2 px-3 bg-sky-500 text-white text-sm font-semibold rounded-[100px]  ">
-            {isButton}
+            <button className={`p-2 px-3 bg-sky-500 text-white text-sm font-semibold rounded-[100px] ${contract?.status === "Signatured" ? "bg-sky-300 text-gray-200 cursor-not-allowed" : "bg-sky-500 text-white"}`} >
+            {contract?.status === "Signatured" ? "Send for Internal Signature " : "Send for Signature"}
             </button>
         </div>
         </div>

@@ -1,15 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
+import { useAuthStore } from "../store/authStore";
 import { BellDot, SquareCheckBig } from "lucide-react"; // Importing Lucide icons
 
 const Navbar = () => {
+  const { tabledata, tabledatas } = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  useEffect(() => {
+    const fetchTable = async () => {
+      setIsLoading(true);
+      try {
+        await tabledata();
+        console.log("Fetched tables Logs:", tabledatas);
+      } catch (error) {
+        console.error("Error fetching task logs:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTable();
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = tabledatas.filter((item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(filtered);
+    } else {
+      setFilteredData([]);
+    }
+  }, [searchTerm, tabledatas]);
   return (
     <>
       <div className="w-full ">
         <div className="navbar bg-gray-200">
-          <div className="flex-1">
+          <div className="flex-1 relative">
             <label className="input input-bordered flex items-center gap-2 rounded-full">
-              <input type="text" className="grow" placeholder="Search" />
+              <input type="text" className="grow" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -22,6 +53,23 @@ const Navbar = () => {
                   clipRule="evenodd"
                 />
               </svg>
+              {/* Dropdown for search results */}
+            {filteredData.length > 0 && (
+              <ul className="absolute top-full left-0 right-0 bg-white shadow-lg mt-1 w-64 rounded-lg max-h-60 overflow-auto z-50">
+                {filteredData.map((item, index) => (
+                  <li
+                    key={index}
+                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                    onClick={() => {
+                      setSearchTerm(item.name);
+                      setFilteredData([]);
+                    }}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            )}
             </label>
           </div>
           <div className="flex-none flex items-center gap-4">
